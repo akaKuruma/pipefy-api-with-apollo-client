@@ -1,6 +1,6 @@
 import { ApolloClient, createNetworkInterface } from 'react-apollo';
 
-const pipefyOauthToken = 'Bearer '
+const pipefyOauthToken = 'Bearer ';
 
 const networkInterface = createNetworkInterface({
   uri: 'https://app.pipefy.com/queries',
