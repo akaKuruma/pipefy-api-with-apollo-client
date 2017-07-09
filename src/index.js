@@ -4,19 +4,27 @@ import './index.css';
 import App from './Main/App';
 import registerServiceWorker from './registerServiceWorker';
 
-import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { ApolloProvider } from 'react-apollo';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import appReducers from './Redux/reducer'
+import pipefyApolloClient from './Apollo/client'
 
 let store = createStore(
-  appReducers,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  combineReducers({
+    appState: appReducers,
+    apollo: pipefyApolloClient.reducer(),
+  }),
+  {}, // initial state
+  compose(
+    applyMiddleware(pipefyApolloClient.middleware()),
+    (typeof window.__REDUX_DEVTOOLS_EXTENSION__ !== 'undefined') ? window.__REDUX_DEVTOOLS_EXTENSION__() : f => f,
+  )
 );
 
 ReactDOM.render(
-  <Provider store={store}>
+  <ApolloProvider store={store} client={pipefyApolloClient}>
     <App />
-  </Provider>,
+  </ApolloProvider>,
   document.getElementById('root')
 );
 
