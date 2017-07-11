@@ -8,7 +8,7 @@ const renderOrg = (org, onClick) => (
   </ListGroupItem>
 )
 
-const OrganizationsPanel = ({ data, onClick }) => {
+const OrganizationsList = ({ data, onClick }) => {
   const { loading, error, organizations } = data
 
   if (loading) return (<SpinLoader />)
@@ -21,4 +21,4 @@ const OrganizationsPanel = ({ data, onClick }) => {
   )
 }
 
-export default OrganizationsPanel
+export default OrganizationsList
