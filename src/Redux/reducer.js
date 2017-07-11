@@ -2,6 +2,7 @@ import { actionTypes } from './actions'
 
 const initialState = {
   selectedOrganizationId: null,
+  selectedPipeId: null,
 };
 
 const appReducer = (state = initialState, action) => {
@@ -10,6 +11,11 @@ const appReducer = (state = initialState, action) => {
       return {
         ...state,
         selectedOrganizationId: action.orgId
+      }
+    case actionTypes.SELECT_PIPE:
+      return {
+        ...state,
+        selectedPipeId: action.pipeId
       }
     default:
       return state
