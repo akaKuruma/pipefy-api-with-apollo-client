@@ -13,5 +13,5 @@ export { actionTypes }
  */
 
 export function selectOrganization(orgId) {
-  return { type: actionTypes.SELECT_ORGANIZATION, orgId }
+  return { type: actionTypes.SELECT_ORGANIZATION, orgId: orgId }
 }
