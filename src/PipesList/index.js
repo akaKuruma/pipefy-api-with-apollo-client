@@ -1,6 +1,9 @@
 import { graphql, compose } from 'react-apollo'
+import { connect } from 'react-redux'
 import gql from 'graphql-tag'
+
 import PipesList from './PipesList'
+import { selectPipe } from '../Redux/actions'
 
 const query = gql`
   query organizationWithPipes($orgId: ID!){
@@ -21,7 +24,13 @@ const queryOptions = {
   })
 }
 
+const mapDispatchToProps = (dispatch) => (
+  {
+    onClick: (pipeId) => dispatch(selectPipe(pipeId))
+  }
+)
 
 export default compose(
   graphql(query, queryOptions),
+  connect(null, mapDispatchToProps)
 )(PipesList)

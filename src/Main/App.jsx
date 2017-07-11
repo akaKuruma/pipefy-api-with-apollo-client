@@ -8,9 +8,9 @@ import './App.css';
 
 import OrganizationsList from '../OrganizationsList'
 import PipesList from '../PipesList'
+import PipeNameModal from '../PipeNameModal'
 
 class App extends Component {
-
   renderPipesListRow() {
     return (
       <Row className="show-grid">
@@ -22,6 +22,8 @@ class App extends Component {
   }
 
   render() {
+    const { selectedOrganizationId, selectedPipeId } = this.props
+
     return (
       <div className="App">
         <div className="App-header">
@@ -36,7 +38,8 @@ class App extends Component {
             </Col>
           </Row>
 
-          { this.props.selectedOrganizationId && this.renderPipesListRow() }
+          { selectedOrganizationId && this.renderPipesListRow() }
+          { selectedPipeId && <PipeNameModal selectedPipeId={selectedPipeId} />}
         </Grid>
       </div>
     );
